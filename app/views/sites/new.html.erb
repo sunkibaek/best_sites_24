@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-lg-offset-3 col-lg-6">
+    <div class="well">
+      <%= form_for @site, html: { multipart: true } do |f| %>
+        <div class="form-group">
+          <%= f.label :url %>
+          <%= f.text_field :url, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :tags %>
+          <%= f.text_field :tags, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :screenshot %>
+          <%= f.file_field :screenshot, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit 'Save', class: 'btn btn-primary', data: { disable_with: "Please wait ..." } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

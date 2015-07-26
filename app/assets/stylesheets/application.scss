@@ -1,0 +1,54 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background-color: #F4F4F4;
+}
+
+.navbar-default {
+  background-color: #333333;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+
+  .navbar-brand, a {
+    color: #fff;
+  }
+}
+
+.bs-site-thumbnail {
+  border: 8px solid #fff;
+  margin-bottom: 15px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.bs-tags {
+  margin-bottom: 15px;
+}
+
+.bs-full-length-preview {
+  border: 8px solid #fff;
+  margin-bottom: 15px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.bs-pagination {
+  text-align: center;
+}
+
+footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #ccc;
+
+  p {
+    margin: 0;
+  }
+}
+

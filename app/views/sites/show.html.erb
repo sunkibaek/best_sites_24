@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-lg-9">
+    <h1><%= @site.title %></h1>
+
+    <div>
+      <div class="bs-tags">
+        <% @site.tags.each do |tag| %>
+          <span class="label label-default"><%= tag %></span>
+        <% end %>
+      </div>
+
+      <div class="bs-full-length-preview">
+        <%= link_to @site.url, title: "Go to #{@site.url}", target: '_blank' do %>
+          <%= image_tag @site.screenshot.url(:full_length), alt: @site.title %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+  </div>
+</div>
+

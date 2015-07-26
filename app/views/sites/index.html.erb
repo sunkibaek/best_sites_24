@@ -1,0 +1,18 @@
+<div class="row">
+  <% @sites.each do |site| %>
+    <div class="col-lg-3">
+      <div class="bs-site-thumbnail">
+        <%= link_to site, title: site.title do %>
+          <%= image_tag site.screenshot.url(:thumb), alt: site.title %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col-lg-12">
+    <div class="bs-pagination">
+      <%= will_paginate @sites, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>
+

@@ -29,13 +29,24 @@
       </div>
     <% end %>
 
+    <% if signed_in? %>
+      <div class="container">
+        <%= link_to 'New site', new_site_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+
     <div class="container">
       <%= yield %>
     </div>
 
     <footer>
       <div class="container">
-        <p>&copy; 2015 BestSites24</p>
+        <p>
+          &copy; 2015 BestSites24
+          <%= link_to new_session_path do %>
+            <span class="pull-right text-muted">Log In</span>
+          <% end %>
+        </p>
       </div>
     </footer>
   </body>

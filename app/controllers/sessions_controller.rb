@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user = authenticate_session(session_params)
 
     if sign_in(user)
-      redirect_to root_path, notice: MSG_WELCOME
+      redirect_to new_site_url, notice: MSG_WELCOME
     else
       render :new
     end

@@ -11,6 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
-/public/system/sites/screenshots
+/public/system/sites/screenshots/*
 /Gemfile.lock
 

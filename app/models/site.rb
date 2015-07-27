@@ -1,6 +1,9 @@
 require 'open-uri'
 
 class Site < ActiveRecord::Base
+  USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 ' \
+    '(KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
+
   has_attached_file :screenshot,
     styles: { full_length: '848x>', thumb: '' },
     convert_options: { thumb: '-resize "263x" -crop "263x226+0+0" +repage' },
@@ -29,7 +32,7 @@ class Site < ActiveRecord::Base
   private
 
   def remote_site
-    Nokogiri::HTML open(url)
+    Nokogiri::HTML open(url, 'User-Agent' => USER_AGENT)
   end
 end
 

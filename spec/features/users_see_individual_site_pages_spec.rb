@@ -5,6 +5,10 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
     create :site, title: 'Test Title of Site', tags: 'test_tag, sample_tag'
   end
 
+  let!(:another_site) do
+    create :site, title: 'Another Test Title of Site', tags: 'another_tag'
+  end
+
   scenario 'click on image to see individual site page' do
     visit '/'
 
@@ -15,7 +19,7 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
     expect(page).to have_css :h1, text: 'Test Title of Site'
   end
 
-  scenario 'visit individual site page vi url to see details' do
+  scenario 'visit individual site page via url to see details' do
     visit "/sites/#{site.id}"
 
     expect(page).to have_css :h1, text: 'Test Title of Site'
@@ -23,6 +27,17 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
     expect(page).to have_css :span, text: 'sample_tag'
 
     find('img[src]')
+  end
+
+  scenario 'visit individual site page and filter contents via tags' do
+    visit "/sites/#{site.id}"
+
+    click_link 'test_tag'
+
+    # refactor to find sites only with the tag
+    #find('a[title="Test Title of Site"]')
+
+    expect(page).to have_css 'a img', count: 1
   end
 end
 

@@ -5,7 +5,7 @@
     <div>
       <div class="bs-tags">
         <% @site.tags.each do |tag| %>
-          <span class="label label-default"><%= tag %></span>
+          <span class="label label-default"><%= link_to tag, tags_path(tag: tag) %></span>
         <% end %>
       </div>
 

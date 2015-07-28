@@ -4,7 +4,14 @@ class SitesController < ApplicationController
   before_action :require_login, only: [:new]
 
   def index
-    @sites = Site.order(id: :desc).paginate(page: params[:page], per_page: 12)
+    @sites = if params[:tag]
+               # Book.where("'fantasy' = ANY (tags)")
+               Site.where("? = ANY (tags)", params[:tag])
+             else
+               Site
+             end
+
+    @sites = @sites.order(id: :desc).paginate(page: params[:page], per_page: 12)
   end
 
   def show

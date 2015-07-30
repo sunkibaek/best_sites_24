@@ -7,11 +7,17 @@ RSpec.describe Site, type: :model do
       tags: 'test_tag, sample_tag'
   end
 
-  describe '#tags_in_text' do
-    it 'should return joined text of tags' do
-      expect(site.tags).to eq ['test_tag', 'sample_tag']
-      expect(site.tags_in_text).to eq 'test_tag, sample_tag'
+  describe '#tags=' do
+    it 'should save input texts as tags array' do
     end
+  end
+
+  describe '#html_doc' do
+    it 'should parse ' do
+    end
+  end
+
+  describe '#fetch_html_doc' do
   end
 end
 

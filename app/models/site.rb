@@ -12,16 +12,12 @@ class Site < ActiveRecord::Base
   validates :url, presence: true
   validates_attachment_content_type :screenshot, content_type: /\Aimage\/.*\Z/
 
-  def tags=(input_tags)
-    super input_tags.downcase.split(',').map { |e| e.strip.gsub(/\ +/, '_') }
-  end
-
-  def tags_in_text
-    tags.join(', ')
+  def tags=(input_tag_in_text)
+    super normalized_tags(input_tag_in_text)
   end
 
   def html_doc
-    Nokogiri::HTML(super)
+    Nokogiri::HTML super
   end
 
   def fetch_html_doc
@@ -33,6 +29,12 @@ class Site < ActiveRecord::Base
 
   def remote_site
     Nokogiri::HTML open(url, 'User-Agent' => USER_AGENT)
+  end
+
+  def normalized_tags(tag_in_text)
+    tag_in_text.downcase.split(',').map do |tag|
+      tag.strip.gsub(/\ +/, '_')
+    end
   end
 end
 

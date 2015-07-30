@@ -37,5 +37,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capistrano', '~> 2.15.5'
   gem 'rvm-capistrano', require: false
+  gem 'codeclimate-test-reporter', require: false
 end
 

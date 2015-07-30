@@ -13,4 +13,5 @@
 /tmp
 /public/system/sites/screenshots
 /Gemfile.lock
+/coverage
 

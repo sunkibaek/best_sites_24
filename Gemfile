@@ -8,6 +8,7 @@ gem 'pg'
 gem 'sass-rails'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'font-awesome-sass'
 
 gem 'uglifier'
 gem 'coffee-rails'

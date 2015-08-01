@@ -9,7 +9,7 @@ class Site < ActiveRecord::Base
     convert_options: { thumb: '-resize "263x" -crop "263x226+0+0" +repage' },
     default_url: '/images/:style/missing.png'
 
-  validates :url, presence: true
+  validates :url, presence: true, uniqueness: true
   validates_attachment_content_type :screenshot, content_type: /\Aimage\/.*\Z/
 
   def tags=(input_tag_in_text)

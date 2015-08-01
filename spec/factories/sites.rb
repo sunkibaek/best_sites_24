@@ -1,6 +1,9 @@
 FactoryGirl.define do
   factory :site do
-    url 'http://www.test-url.com'
+    sequence :url do |n|
+      "http://www.test-url-#{n}.com"
+    end
+
     title 'Test Title'
     tags 'test_tag, sample_tag'
   end

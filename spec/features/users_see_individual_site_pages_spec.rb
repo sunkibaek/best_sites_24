@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
   let!(:site) do
-    create :site, title: 'Test Title of Site', tags: 'test_tag, sample_tag'
+    create :site, title: 'Test Title of Site', tags: 'test_tag, sample_tag',
+      url: 'http://www.test-url.com'
   end
 
   let!(:another_site) do
@@ -38,6 +39,10 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
     #find('a[title="Test Title of Site"]')
 
     expect(page).to have_css '.bs-site-thumbnail a img', count: 1
+  end
+
+  scenario 'visit individual site page via url slug' do
+    visit '/sites/'
   end
 end
 

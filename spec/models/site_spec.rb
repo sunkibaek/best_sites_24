@@ -8,16 +8,18 @@ RSpec.describe Site, type: :model do
   end
 
   describe '#tags=' do
-    it 'should save input texts as tags array' do
+    it 'saves input texts as tags array' do
     end
   end
 
   describe '#html_doc' do
-    it 'should parse ' do
+    it 'parses saved html (string) into nokogiri obj' do
     end
   end
 
   describe '#fetch_html_doc' do
+    it 'fetches html doc from remote server' do
+    end
   end
 end
 

@@ -19,12 +19,27 @@ body {
 }
 
 .bs-site-thumbnail {
+  position: relative;
   border: 8px solid #fff;
   margin-bottom: 15px;
 
   img {
     width: 100%;
   }
+}
+
+.bs-direct-link {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  background-color: #ccc;
+  color: #fff;
+  font-size: 2em;
+  padding: 2px 8px;
+}
+
+.bs-site-thumbnail:hover .bs-direct-link {
+  display: block;
 }
 
 .bs-tags {

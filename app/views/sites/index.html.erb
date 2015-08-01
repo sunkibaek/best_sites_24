@@ -5,6 +5,10 @@
         <%= link_to site, title: site.title do %>
           <%= image_tag site.screenshot.url(:thumb), alt: site.title %>
         <% end %>
+
+        <%= link_to site.url, title: "Go to #{site.url}", class: 'bs-direct-link', target: '_blank' do %>
+          <span class="fa fa-link"></span>
+        <% end %>
       </div>
     </div>
   <% end %>

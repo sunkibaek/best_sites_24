@@ -12,8 +12,8 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
   scenario 'click on image to see individual site page' do
     visit '/'
 
-    within '.bs-site-thumbnail:first-of-type' do
-      find('a').click
+    within '.col-lg-3:last-of-type .bs-site-thumbnail' do
+      find('a[title="Test Title of Site"]').click
     end
 
     expect(page).to have_css :h1, text: 'Test Title of Site'
@@ -26,7 +26,7 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
     expect(page).to have_css :span, text: 'test_tag'
     expect(page).to have_css :span, text: 'sample_tag'
 
-    find('img[src]')
+    find('.bs-full-length-preview img[src]')
   end
 
   scenario 'visit individual site page and filter contents via tags' do
@@ -37,7 +37,7 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
     # refactor to find sites only with the tag
     #find('a[title="Test Title of Site"]')
 
-    expect(page).to have_css 'a img', count: 1
+    expect(page).to have_css '.bs-site-thumbnail a img', count: 1
   end
 end
 

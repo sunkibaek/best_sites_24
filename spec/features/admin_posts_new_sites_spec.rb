@@ -24,8 +24,10 @@ RSpec.feature "AdminPostsNewSites", type: :feature do
     have_css :span, 'white'
     have_css :span, 'news'
 
-    find 'a[title="Go to http://edition.cnn.com"]'
-    find 'img[src]'
+    within '.bs-full-length-preview' do
+      find 'a[title="Go to http://edition.cnn.com"]'
+      find 'img[src]'
+    end
   end
 end
 

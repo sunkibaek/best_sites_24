@@ -15,7 +15,7 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.find(params[:id])
+    @site = (Site.find_by(url_slug: params[:id]) || Site.find(params[:id]))
   end
 
   def new
@@ -25,6 +25,7 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(site_params)
     @site.fetch_html_doc
+    @site.generate_url_slug
 
     if @site.save
       redirect_to @site, notice: MSG_CREATE

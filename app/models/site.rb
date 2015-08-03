@@ -25,6 +25,17 @@ class Site < ActiveRecord::Base
     self.title = html_doc.title
   end
 
+  def url_slug
+    super || url.gsub('http://', '')
+        .gsub('https://', '')
+        .gsub(/\/$/, '')
+        .gsub(/[\.]/, '-')
+  end
+
+  def generate_url_slug
+    self.url_slug = url_slug
+  end
+
   private
 
   def remote_site

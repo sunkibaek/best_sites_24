@@ -42,7 +42,9 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
   end
 
   scenario 'visit individual site page via url slug' do
-    visit '/sites/'
+    visit '/sites/' + site.url_slug
+
+    expect(page).to have_css :h1, text: 'Test Title of Site'
   end
 end
 

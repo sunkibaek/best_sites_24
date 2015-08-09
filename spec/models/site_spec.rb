@@ -7,8 +7,15 @@ RSpec.describe Site, type: :model do
       tags: 'test_tag, sample_tag'
   end
 
+  describe 'USER_AGENT' do
+    it 'is a string of user agent description' do
+      expect(Site::USER_AGENT).to be_a String
+    end
+  end
+
   describe '#tags=' do
     it 'saves input texts as tags array' do
+      expect(site.tags).to eq ['test_tag', 'sample_tag']
     end
   end
 
@@ -24,6 +31,11 @@ RSpec.describe Site, type: :model do
 
   describe '#url_slug' do
     it 'returns stored url_slug or cleans up url to make new one' do
+    end
+  end
+
+  describe '#generate_url_slug' do
+    it 'generates url slug and saves it' do
     end
   end
 end

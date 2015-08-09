@@ -26,10 +26,7 @@ class Site < ActiveRecord::Base
   end
 
   def url_slug
-    super || url.gsub('http://', '')
-        .gsub('https://', '')
-        .gsub(/\/$/, '')
-        .gsub(/[\.]/, '-')
+    super || UrlSlug.new(url).slug
   end
 
   def generate_url_slug

@@ -21,5 +21,10 @@ RSpec.describe Site, type: :model do
     it 'fetches html doc from remote server' do
     end
   end
+
+  describe '#url_slug' do
+    it 'returns stored url_slug or cleans up url to make new one' do
+    end
+  end
 end
 

@@ -6,6 +6,13 @@ RSpec.describe Site, type: :model do
       url: 'https://google.com',
       tags: 'test_tag, sample_tag'
   end
+  let(:test_html) do
+    '<html><head><title>Test HTML</title></head>' \
+      '<body><h1>Hello, World!</h1></body></html>'
+  end
+
+  it { should validate_presence_of(:url) }
+  it { should validate_uniqueness_of(:url) }
 
   describe 'USER_AGENT' do
     it 'is a string of user agent description' do
@@ -29,13 +36,11 @@ RSpec.describe Site, type: :model do
     end
   end
 
-  describe '#url_slug' do
-    it 'returns stored url_slug or cleans up url to make new one' do
-    end
-  end
-
   describe '#generate_url_slug' do
     it 'generates url slug and saves it' do
+      site.generate_url_slug
+
+      expect(site.url_slug).to eq 'google-com'
     end
   end
 end

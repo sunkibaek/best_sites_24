@@ -25,12 +25,9 @@ class Site < ActiveRecord::Base
     self.title = html_doc.title
   end
 
-  def url_slug
-    super || UrlSlug.new(url).slug
-  end
-
   def generate_url_slug
-    self.url_slug = url_slug
+    self.url_slug = UrlSlug.new(url).slug
+    self.save!
   end
 
   private

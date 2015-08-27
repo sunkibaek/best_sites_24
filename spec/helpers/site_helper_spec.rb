@@ -11,5 +11,13 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe SiteHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'tag_label' do
+    it 'returns html tags with tag' do
+      tag = 'modern'
+
+      expect(helper.tag_label(tag)).to eq '<span class="label label-default">' \
+        '<a href="/tags/modern"><span class="fa fa-tag"></span>modern' \
+        '</a></span>'
+    end
+  end
 end

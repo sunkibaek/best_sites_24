@@ -19,6 +19,9 @@
 require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
+require 'webmock/rspec'
+WebMock.disable_net_connect!(allow_localhost: true)
+
 # Shoulda::Matchers.configure do |config|
 #   config.integrate do |with|
 #     with.test_framework :rspec

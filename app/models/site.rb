@@ -12,6 +12,10 @@ class Site < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
   validates_attachment_content_type :screenshot, content_type: /\Aimage\/.*\Z/
 
+  def self.with_tag(tag)
+    where("? = ANY (tags)", tag)
+  end
+
   def tags=(input_tag_in_text)
     super normalized_tags(input_tag_in_text)
   end
@@ -23,6 +27,7 @@ class Site < ActiveRecord::Base
   def fetch_html_doc
     self.html_doc = remote_site.to_s
     self.title = html_doc.title
+    self.save!
   end
 
   def generate_url_slug
@@ -33,6 +38,7 @@ class Site < ActiveRecord::Base
   private
 
   def remote_site
+    # Some sites block access without a fake user agent
     Nokogiri::HTML open(url, 'User-Agent' => USER_AGENT)
   end
 
@@ -42,4 +48,3 @@ class Site < ActiveRecord::Base
     end
   end
 end
-

@@ -40,4 +40,5 @@ group :test do
   gem 'rvm-capistrano', require: false
   gem 'shoulda-matchers', require: false
   gem 'web-console'
+  gem 'webmock'
 end

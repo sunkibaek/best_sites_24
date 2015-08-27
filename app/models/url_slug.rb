@@ -14,4 +14,3 @@ class UrlSlug
 
   attr_reader :url
 end
-

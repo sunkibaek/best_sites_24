@@ -5,8 +5,7 @@ class SitesController < ApplicationController
 
   def index
     @sites = if params[:tag]
-               # Book.where("'fantasy' = ANY (tags)")
-               Site.where("? = ANY (tags)", params[:tag])
+               Site.with_tag(params[:tag])
              else
                Site
              end
@@ -24,10 +23,8 @@ class SitesController < ApplicationController
 
   def create
     @site = Site.new(site_params)
-    @site.fetch_html_doc
-    @site.generate_url_slug
 
-    if @site.save
+    if @site.save && @site.fetch_html_doc && @site.generate_url_slug
       redirect_to @site, notice: MSG_CREATE
     else
       render 'new'
@@ -40,4 +37,3 @@ class SitesController < ApplicationController
     params.require(:site).permit(:url, :tags, :screenshot)
   end
 end
-

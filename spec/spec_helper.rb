@@ -20,7 +20,8 @@ require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
 require 'webmock/rspec'
-WebMock.disable_net_connect!(allow_localhost: true)
+# WebMock.disable_net_connect!(allow_localhost: true)
+WebMock.disable_net_connect!(:allow => 'codeclimate.com')
 
 # Shoulda::Matchers.configure do |config|
 #   config.integrate do |with|

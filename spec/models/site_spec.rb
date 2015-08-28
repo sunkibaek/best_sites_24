@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Site, type: :model do
   subject(:site) do
     build :site,
-      url: 'https://google.com',
+      url: 'http://example.com',
       tags: 'test_tag, sample_tag'
   end
   let(:test_html) do
@@ -53,7 +53,7 @@ RSpec.describe Site, type: :model do
     it 'generates url slug and saves it' do
       site.generate_url_slug
 
-      expect(site.url_slug).to eq 'google-com'
+      expect(site.url_slug).to eq 'example-com'
     end
   end
 end

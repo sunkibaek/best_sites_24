@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.2.3'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -12,7 +12,7 @@ gem 'monban'
 gem 'monban-generators'
 gem 'paperclip'
 gem 'pg'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.4'
 gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'

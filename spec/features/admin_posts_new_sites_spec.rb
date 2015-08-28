@@ -4,6 +4,11 @@ RSpec.feature "AdminPostsNewSites", type: :feature do
   let(:user_admin) { create :user_admin }
 
   before do
+    stub_request(:any, 'edition.cnn.com')
+      .to_return(body: '<!DOCTYPE html><html><head><title>' \
+        'Breaking News, U.S., World, Weather, Entertainment & Video' \
+        ' News - CNN.com</title></head><body>CNN</body></html>')
+
     sign_in user_admin
   end
 
@@ -30,4 +35,3 @@ RSpec.feature "AdminPostsNewSites", type: :feature do
     end
   end
 end
-

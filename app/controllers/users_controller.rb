@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
     if @user.valid?
       sign_in(@user)
-      redirect_to root_path
+      redirect_to root_url
     else
       render :new
     end
@@ -22,4 +22,3 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password)
   end
 end
-

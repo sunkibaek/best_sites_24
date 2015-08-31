@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
   MSG_CREATE = 'Site has been successfully created.'
 
-  before_action :require_login, only: [:new]
+  before_action :require_login, only: [:new, :create]
 
   def index
     @sites = if params[:tag]

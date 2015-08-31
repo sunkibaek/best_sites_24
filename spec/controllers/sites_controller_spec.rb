@@ -88,14 +88,63 @@ describe SitesController, type: :controller do
 
   describe '#create' do
     context 'with user logged in' do
+      before do
+        user = create :user
+        sign_in user
+      end
+
       context 'with valid params' do
+        subject do
+          post :create, site: {
+            url: 'http://www.example.com',
+            tags: 'tag_a, tag_b',
+            screenshot_file_name: "#{Rails.root}/spec/support/assets/" \
+              "edition_cnn_com.png",
+            screenshot_content_type: 'image/png',
+            screenshot_file_size: 4477981,
+            screenshot_updated_at: Time.zone.now }
+        end
+
+        it 'renders show page with notice' do
+          stub_request(:get, "http://www.example.com/").
+            to_return(:status => 200, :body => example_response)
+
+          subject
+
+          expect(subject).to redirect_to site_url(Site.last.id)
+          expect(flash[:notice]).to eq SitesController::MSG_CREATE
+        end
+
       end
 
       context 'with invalid params' do
+        subject { post :create, site: { url: '', tags: '', screenshot: '' } }
+
+        it 'renders new page' do
+          expect(subject).to render_template :new
+        end
       end
     end
 
     context 'without user logged in' do
+      subject { post :create, site: { site: {} } }
+
+      it 'denies the access' do
+        expect(subject).to redirect_to new_session_url
+      end
     end
+  end
+
+  def example_response
+    <<-response.strip_heredoc
+      <html>
+        <head>
+          <title>Example Title</title>
+        </head>
+        <body>
+          This is example body.
+        </body>
+      </html>
+    response
   end
 end

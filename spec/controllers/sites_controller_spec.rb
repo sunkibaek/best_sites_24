@@ -9,36 +9,6 @@ describe SitesController, type: :controller do
     end
   end
 
-  describe '#index' do
-    context 'with a specific tag' do
-      it 'shows sites only with a certain tag' do
-        chosen_site = create :site, tags: 'certain_tag'
-        not_chosen_site = create :site, tags: 'general_tag'
-
-        get :index, tag: 'certain_tag'
-
-        expect(assigns(:sites)).to eq [chosen_site]
-        expect(response).to be_success
-      end
-    end
-
-    context 'without any tag' do
-      it 'shows all sites, first 12, id descending order' do
-        20.times do
-          create :site
-        end
-
-        site_created_last = create :site
-
-        get :index
-
-        expect(assigns(:sites).length).to eq 12
-        expect(assigns(:sites).first).to eq site_created_last
-        expect(response).to be_success
-      end
-    end
-  end
-
   describe '#show' do
     context 'with a url slug' do
       it 'renders page of site with requested slug' do

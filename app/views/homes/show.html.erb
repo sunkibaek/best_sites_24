@@ -1,0 +1,29 @@
+<% unless params[:page] || params[:tag] %>
+  <div class="row most-popular">
+    <div class="col-lg-12">
+      <h2>Most popular</h2>
+    </div>
+
+    <%= render @popular_sites %>
+  </div>
+<% end %>
+
+<div class="row most-recent">
+  <div class="col-lg-12">
+    <h2>Most recent</h2>
+  </div>
+
+  <% if params[:tag] %>
+    <div class="col-lg-12">
+      <p>Displaying results for <span class="fa fa-tag"></span> <%= params[:tag] %></p>
+    </div>
+  <% end %>
+
+  <%= render @recent_sites %>
+
+  <div class="col-lg-12">
+    <div class="bs-pagination">
+      <%= will_paginate @recent_sites, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

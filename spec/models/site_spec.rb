@@ -29,6 +29,15 @@ RSpec.describe Site, type: :model do
     end
   end
 
+  describe '.popular' do
+    it 'returns most viewed sites in descending order' do
+      more_viewed_site = create :site, views_count: 10
+      less_viewed_site = create :site, views_count: 5
+
+      expect(Site.popular).to eq [more_viewed_site, less_viewed_site]
+    end
+  end
+
   describe '#tags=' do
     it 'saves input texts as tags array' do
       expect(site.tags).to eq ['test_tag', 'sample_tag']

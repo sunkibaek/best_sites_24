@@ -13,7 +13,7 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
   scenario 'click on image to see individual site page' do
     visit '/'
 
-    within '.col-lg-3:last-of-type .bs-site-thumbnail' do
+    within '.most-recent .col-lg-3:last-of-type .bs-site-thumbnail' do
       find('a[title="Test Title of Site"]').click
     end
 
@@ -38,7 +38,9 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
     # refactor to find sites only with the tag
     #find('a[title="Test Title of Site"]')
 
-    expect(page).to have_css '.bs-site-thumbnail a img', count: 1
+    within '.most-recent' do
+      expect(page).to have_css '.bs-site-thumbnail a img', count: 1
+    end
   end
 
   scenario 'visit individual site page via url slug' do
@@ -47,4 +49,3 @@ RSpec.feature "UsersSeeIndividualSitePages", type: :feature do
     expect(page).to have_css :h1, text: 'Test Title of Site'
   end
 end
-

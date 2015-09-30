@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801021023) do
+ActiveRecord::Schema.define(version: 20150929073903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150801021023) do
     t.integer  "screenshot_file_size"
     t.datetime "screenshot_updated_at"
     t.string   "url_slug"
+    t.integer  "views_count",             default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,4 +40,13 @@ ActiveRecord::Schema.define(version: 20150801021023) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  create_table "views", force: :cascade do |t|
+    t.integer  "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "views", ["site_id"], name: "index_views_on_site_id", using: :btree
+
+  add_foreign_key "views", "sites"
 end

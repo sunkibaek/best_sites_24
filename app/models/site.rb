@@ -4,6 +4,8 @@ class Site < ActiveRecord::Base
   USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 ' \
     '(KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
 
+  has_many :views
+
   has_attached_file :screenshot,
     styles: { full_length: '848x>', thumb: '' },
     convert_options: { thumb: '-resize "263x" -crop "263x226+0+0" +repage' },
@@ -14,6 +16,10 @@ class Site < ActiveRecord::Base
 
   def self.with_tag(tag)
     where("? = ANY (tags)", tag)
+  end
+
+  def self.popular
+    order(views_count: :desc)
   end
 
   def tags=(input_tag_in_text)

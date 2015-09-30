@@ -10,21 +10,27 @@ RSpec.feature "UsersSeeHomepageForListOfSites", type: :feature do
   scenario 'see twelve site images at a time' do
     visit '/'
 
-    expect(page).to have_css('.bs-site-thumbnail img', count: 12)
+    within '.most-recent' do
+      expect(page).to have_css('.bs-site-thumbnail img', count: 12)
+    end
 
     click_link '2'
 
-    expect(page).to have_css('.bs-site-thumbnail img', count: 12)
+    within '.most-recent' do
+      expect(page).to have_css('.bs-site-thumbnail img', count: 12)
+    end
 
     click_link '3'
 
-    expect(page).to have_css('.bs-site-thumbnail img', count: 6)
+    within '.most-recent' do
+      expect(page).to have_css('.bs-site-thumbnail img', count: 6)
+    end
   end
 
   scenario 'click on link to directly go to the site' do
     visit '/'
 
-    within '.col-lg-3:last-of-type .bs-site-thumbnail' do
+    within '.most-recent .col-lg-3:last-of-type .bs-site-thumbnail' do
       find("a:first-of-type").click
     end
   end

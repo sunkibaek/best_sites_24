@@ -105,6 +105,8 @@ describe SitesController, type: :controller do
     end
   end
 
+  private
+
   def example_response
     <<-response.strip_heredoc
       <html>

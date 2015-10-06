@@ -31,6 +31,13 @@ ActiveRecord::Migration.maintain_test_schema!
 Capybara.default_selector = :css
 Monban.test_mode!
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Monban::Test::Helpers, type: :feature

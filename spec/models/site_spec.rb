@@ -11,8 +11,9 @@ RSpec.describe Site, type: :model do
       '<body><h1>Hello, World!</h1></body></html>'
   end
 
-  it { should validate_presence_of(:url) }
-  it { should validate_uniqueness_of(:url) }
+  it { is_expected.to validate_presence_of(:url) }
+  it { is_expected.to validate_uniqueness_of(:url) }
+  it { is_expected.to have_many(:views) }
 
   describe 'USER_AGENT' do
     it 'is a string of user agent description' do

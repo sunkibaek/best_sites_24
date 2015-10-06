@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SitesController, type: :controller do
+describe HomesController, type: :controller do
   describe '#show' do
     context 'with a specific tag' do
       it 'shows sites only with a certain tag' do

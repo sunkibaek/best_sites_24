@@ -7,7 +7,7 @@ RSpec.describe Site, type: :model do
       tags: 'test_tag, sample_tag'
   end
   let(:test_html) do
-    '<!DOCTYPE html><html><head><title>Test HTML</title></head>' \
+    '<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Test HTML</title></head>' \
       '<body><h1>Hello, World!</h1></body></html>'
   end
 
@@ -56,6 +56,13 @@ RSpec.describe Site, type: :model do
 
   describe '#fetch_html_doc' do
     it 'fetches html doc from remote server' do
+      stub_request(:get, "http://example.com/")
+        .to_return(:status => 200, :body => test_html, :headers => {})
+
+      site.fetch_html_doc
+
+      expect(site.title).to eq ('Test HTML')
+      expect(site.html_doc.to_s.gsub(/\n/, '')).to eq (test_html)
     end
   end
 

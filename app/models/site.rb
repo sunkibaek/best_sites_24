@@ -1,9 +1,4 @@
-require 'open-uri'
-
 class Site < ActiveRecord::Base
-  USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 ' \
-    '(KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
-
   has_many :views
 
   has_attached_file :screenshot,
@@ -30,23 +25,7 @@ class Site < ActiveRecord::Base
     Nokogiri::HTML super
   end
 
-  def fetch_html_doc
-    self.html_doc = remote_site.to_s
-    self.title = html_doc.title
-    self.save!
-  end
-
-  def generate_url_slug
-    self.url_slug = UrlSlug.new(url).slug
-    self.save!
-  end
-
   private
-
-  def remote_site
-    # Some sites block access without a fake user agent
-    Nokogiri::HTML open(url, 'User-Agent' => USER_AGENT)
-  end
 
   def normalized_tags(tag_in_text)
     tag_in_text.downcase.split(',').map do |tag|

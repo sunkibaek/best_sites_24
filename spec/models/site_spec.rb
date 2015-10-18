@@ -15,12 +15,6 @@ RSpec.describe Site, type: :model do
   it { is_expected.to validate_uniqueness_of(:url) }
   it { is_expected.to have_many(:views) }
 
-  describe 'USER_AGENT' do
-    it 'is a string of user agent description' do
-      expect(Site::USER_AGENT).to be_a String
-    end
-  end
-
   describe '.with_tag' do
     it 'returns sites only with a certain tag' do
       site_with_tag_a = create :site, tags: 'tag_a'
@@ -51,26 +45,6 @@ RSpec.describe Site, type: :model do
 
       expect(site.html_doc).to be_a Nokogiri::HTML::Document
       expect(site.html_doc.to_s).to start_with "<!DOCTYPE html>\n<html>"
-    end
-  end
-
-  describe '#fetch_html_doc' do
-    it 'fetches html doc from remote server' do
-      stub_request(:get, "http://example.com/")
-        .to_return(:status => 200, :body => test_html, :headers => {})
-
-      site.fetch_html_doc
-
-      expect(site.title).to eq ('Test HTML')
-      expect(site.html_doc.to_s.gsub(/\n/, '')).to eq (test_html)
-    end
-  end
-
-  describe '#generate_url_slug' do
-    it 'generates url slug and saves it' do
-      site.generate_url_slug
-
-      expect(site.url_slug).to eq 'example-com'
     end
   end
 end
